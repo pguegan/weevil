@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -48,10 +49,12 @@ public class Array<E extends Comparable<E>> extends Collection<E> implements Ind
 			@SuppressWarnings("unchecked")
 			final Array<E> other = (Array<E>) o;
 			equals = (other.size() == size());
-			int i = size() - 1;
-			while (i >= 0 && equals) {
-				equals = (get(i).equals(other.get(i)));
-				i--;
+			if (equals) {
+				final Iterator<E> iterator1 = iterator();
+				final Iterator<E> iterator2 = other.iterator();
+				while (iterator1.hasNext() && equals) {
+					equals = iterator1.next().equals(iterator2.next());
+				}
 			}
 		}
 		// This method must be symmetric, so a comparison with a raw List, although possible, is prohibited

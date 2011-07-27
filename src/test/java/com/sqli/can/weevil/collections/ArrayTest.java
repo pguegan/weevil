@@ -486,14 +486,15 @@ public class ArrayTest extends WeevilTest {
 
 	@Test
 	public void testEqualsDifferentTypes() {
-		final Array<String> array = new Array<String>("a", "b", "c", "d", "e", "f");
-		final Array<Integer> other = new Array<Integer>(1, 2, 3, 4, 5, 6);
-		assertNotEquals(array, other);
+		final Array<String> array = new Array<String>();
+		final Array<Integer> other = new Array<Integer>();
+		// Both objects belongs to the same class, since generic type is erased at runtime
+		assertEquals(array, other);
 	}
 
 	@Test
 	public void testEqualsDifferentClasses() {
-		final Array<String> array = new Array<String>("a", "b", "c", "d", "e", "f");
+		final Array<String> array = new Array<String>();
 		assertNotEquals(array, new Integer(0));
 	}
 
